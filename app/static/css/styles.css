@@ -1,0 +1,255 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+main {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#upload-form {
+    text-align: center;
+    margin: 20px 0;
+}
+
+form {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    margin: 10px 0;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#progress-bar-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+}
+
+#error-message {
+    color: red;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid #4CAF50;
+}
+
+
+#uploaded-image {
+    margin: 20px 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#progress-bar-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+}
+
+/* styles.css */
+
+#result {
+    text-align: center;
+    padding: 20px;
+}
+
+#images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+}
+
+.result-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#image-info {
+    margin-top: 20px;
+}
+
+#image-info p {
+    margin: 5px 0;
+}
+
+#image-info a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#image-info a:hover {
+    background-color: #45a049;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Loading spinner styling */
+#loading-spinner {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #4CAF50;
+}
+
+/* Progress bar styling */
+#progress-bar-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+/* Result Section Styling */
+#result {
+    text-align: center;
+    padding: 20px;
+}
+
+#images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.result-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+#compression-details {
+    margin: 20px 0;
+    font-size: 1.1em;
+}
+
+#compression-details p {
+    margin: 5px 0;
+}
+
+/* Download Button Styling */
+.download-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.download-button:hover {
+    background-color: #45a049;
+}
+
+/* Return to Home Button Styling */
+.return-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.return-button:hover {
+    background-color: #555;
+}

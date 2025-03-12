@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Compression</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Image Compression</h1>
+        <nav>
+            <!-- Add navigation links here if needed -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- Upload Form -->
+        <div id="upload-form">
+    <form id="upload-form-element" action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="photo" accept="image/*" id="file-input" required>
+        <button type="submit">Upload and Compress</button>
+    </form>
+    <!-- Progress Bar -->
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" style="display: none;">
+        <p>Compressing image... Please wait.</p>
+    </div>
+</div>
+<div id="error-message"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#upload-form-element').on('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            // Show loading spinner and reset progress bar
+            $('#loading-spinner').show();
+            $('#progress-bar').css('width', '0%');
+            $('#error-message').empty();
+
+            // AJAX request with progress tracking
+            $.ajax({
+                xhr: function() {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total) * 100;
+                            console.log("Upload progress: " + percentComplete + "%");  // Debug log
+                            $('#progress-bar').css('width', percentComplete + '%');
+                        }
+                    }, false);
+                    return xhr;
+                },
+                type: 'POST',
+                url: '{{ url_for("upload_image") }}',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    // Redirect to the result page using the redirect URL from the response
+                    if (response.redirect_url) {
+                        window.location.href = response.redirect_url;
+                    } else {
+                        $('#error-message').html('<p class="error">Error: No redirect URL provided.</p>');
+                    }
+                },
+                error: function(response) {
+                    // Hide loading spinner and display error message
+                    $('#loading-spinner').hide();
+                    $('#error-message').html('<p class="error">Error: ' + response.responseJSON.error + '</p>');
+                }
+            });
+        });
+    });
+</script>
+
+		<!-- Error Message Display -->
+        <div id="error-message">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Image Compression Tool</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#upload-form-element').on('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                // Show loading spinner and reset progress bar
+                $('#loading-spinner').show();
+                $('#progress-bar').css('width', '0%');
+                $('#error-message').empty();
+
+                // AJAX request for file upload and compression
+                $.ajax({
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 100;
+                                $('#progress-bar').css('width', percentComplete + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    type: 'POST',
+                    url: '{{ url_for("upload_image") }}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        // Redirect to the result page on success
+                        window.location.href = "{{ url_for('result') }}";
+                    },
+                    error: function(response) {
+                        // Hide loading spinner and display error message
+                        $('#loading-spinner').hide();
+                        $('#error-message').html('<p class="error">Error: ' + response.responseJSON.error + '</p>');
+                    }
+                });
+            });
+        });
+		
+		success: function(response) {
+    // Redirect to the result page on success
+    window.location.href = "{{ url_for('result') }}?filename=" + response.filename + 
+                           "&original_size=" + response.original_size + 
+                           "&compressed_size=" + response.compressed_size + 
+                           "&compression_time=" + response.compression_time;
+},
+    </script>
+</body>
+</html>

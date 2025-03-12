@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compression Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Compression Result</h1>
+    </header>
+
+    <main>
+        <!-- Result Section -->
+		<div id="result">
+    <!-- Image Previews -->
+    <div id="images">
+    <div class="image-container">
+        <h3>Original Image</h3>
+        <img src="{{ url_for('uploaded_file', filename=filename) }}" class="result-image" alt="Original Image">
+        <p>Size: {{ original_size }} bytes</p>
+    </div>
+    <div class="image-container">
+        <h3>Compressed Image</h3>
+        <img src="{{ url_for('compressed_file', filename=filename) }}" class="result-image" alt="Compressed Image">
+        <p>Size: {{ compressed_size }} bytes</p>
+    </div>
+</div>
+    <!-- Compression Details -->
+    <div id="compression-details">
+    <p><strong>Compression Time:</strong> {{ compression_time | round(2) }} seconds</p>
+    <p><strong>Compression Ratio:</strong> {{ ((original_size - compressed_size) | abs / original_size * 100) | round(2) }}%</p>
+</div>
+
+    <!-- Download Button -->
+    <div id="download-section">
+        <a href="{{ url_for('download_file', filename=filename) }}" class="download-button">Download Compressed Image</a>
+    </div>
+
+    <!-- Return to Home -->
+    <div id="return-home">
+        <a href="{{ url_for('index') }}" class="return-button">Compress Another Image</a>
+    </div>
+</div>
+     </main>
+
+    <footer>
+        <p>&copy; 2025 Image Compression Tool</p>
+    </footer>
+</body>
+</html>
